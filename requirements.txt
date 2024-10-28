@@ -1,0 +1,8 @@
+python-dotenv
+loguru
+requests
+tqdm
+python-dateutil
+transformers
+datasets
+Pygments
