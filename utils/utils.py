@@ -1,3 +1,4 @@
+from pathlib import Path
 import concurrent
 from concurrent.futures import ThreadPoolExecutor
 from typing import Union, List, Callable, Dict
@@ -5,6 +6,11 @@ import json
 import os
 import time
 import random
+from typing import Literal
+import json
+import requests
+from openai import OpenAI
+from textwrap import dedent
 
 from pygments import highlight, lexers, formatters, styles
 from dotenv import load_dotenv
@@ -12,7 +18,7 @@ from tqdm import tqdm
 from loguru import logger
 
 def find_file(fname: str, start_path: str = None):
-    """fname으로 된 파일을 star_path가 None일 경우, apt_trade/ 부터 재귀적으로 검색합니다.
+    """fname으로 된 파일을 star_path가 None일 경우, 현재 위치에서부터 재귀적으로 탐색합니다.
     가장 최근에 검색된 fname 1개만을 리턴합니다.
 
     Args:
